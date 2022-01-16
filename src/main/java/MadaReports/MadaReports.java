@@ -16,19 +16,20 @@ public class MadaReports {
     private String TakeDate;
     private String ResultDate;
 
-    public MadaReports(List<String> data){
-        this.MDACODE = data.get(0);
-        this.IDNum = Long.parseLong(data.get(1));
-        this.IDType = Integer.parseInt(data.get(2));
-        this.FirstName = data.get(3);
-        this.LastName = data.get(4);
-        this.City = data.get(5);
-        this.Street = data.get(6);
-        this.BuildingNumber = Integer.parseInt(data.get(7));
-        this.Barcode = data.get(8);
-        this.GetDate = data.get(9);
-        this.TakeDate = data.get(10);
-        this.ResultDate = data.get(10);
+    public MadaReports(String record){
+        String[]data = record.split(",");
+        this.MDACODE = data[0];
+        this.IDNum = Long.parseLong(data[1]);
+        this.IDType = Integer.parseInt(data[2]);
+        this.FirstName = data[3];
+        this.LastName = data[4];
+        this.City = data[5];
+        this.Street = data[6];
+        this.BuildingNumber = Integer.parseInt(data[7]);
+        this.Barcode = data[8];
+        this.GetDate = data[9];
+        this.TakeDate = data[10];
+        this.ResultDate = data[11];
     }
 
 }
