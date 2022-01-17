@@ -25,7 +25,7 @@ public class MadaReportsManager {
 
         List<MadaReports> madaReportsList = madaReportsListClass.StringListToMadaReportsList(castToStringList.CsvRecordToString(parse.parse(extract.read(path))));
         List<List<MadaReports>> splitReports = splitClass.split50000(madaReportsList);
-        String basicPath = "";
+        String basicPath = "C:\\Users\\kamer\\Desktop\\intellijProjects\\mada_reports\\";
         for (List<MadaReports> list:splitReports) {
             basicPath = change.ChangePath(basicPath);
             load.load(basicPath,list);
