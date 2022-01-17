@@ -32,7 +32,7 @@ public class LabTestsManager {
 
         List<LabTests> labTestsList = labTestsListClass.stringListToObjectList(castToStringList.CsvRecordToString(parse.parse(extract.read(path))));
         List<List<String>> splitReports = splitClass.split50000(labTestsList);
-        String basicPath = "src/main/resources/";
+        String basicPath = "C:\\Users\\kamer\\Desktop\\intellijProjects\\LABTESTS\\";
         for (List<String> list:splitReports) {
             basicPath = change.ChangePath(basicPath);
             load.load(basicPath,list);
