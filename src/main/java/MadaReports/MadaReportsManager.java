@@ -24,7 +24,7 @@ public class MadaReportsManager {
         Load load = new JsonLoad();
         ChangePath change = new ChangePath();
 
-        List<MadaReports> madaReportsList = madaReportsListClass.StringListToMadaReportsList(castToStringList.CsvRecordToString(parse.parse(extract.read(path))));
+        List<MadaReports> madaReportsList = madaReportsListClass.stringListToObjectList(castToStringList.CsvRecordToString(parse.parse(extract.read(path))));
         List<List<MadaReports>> splitReports = splitClass.split50000(madaReportsList);
         String basicPath = "C:\\Users\\kamer\\Desktop\\intellijProjects\\mada_reports\\";
         for (List<MadaReports> list:splitReports) {
