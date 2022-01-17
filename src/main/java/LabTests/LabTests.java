@@ -3,9 +3,11 @@ package LabTests;
 import health_care_provider.HealthCareInfoProvider;
 import health_care_provider.errors.InvalidIdException;
 import health_care_provider.models.PersonInsured;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.time.LocalDate;
-
+@Getter
+@Setter
 public class LabTests {
     private int IDNum;
     private int IDType;
@@ -42,7 +44,7 @@ public class LabTests {
             this.HealthCareId = person.getHealthCareId();
             this.HealthCareName = person.getHealthCareName();
         } catch (InvalidIdException e) {
-            System.out.println("Invalid Id: "+ this.IDNum);
+            System.out.println("Invalid Id: " + this.IDNum);
         }
 
     }

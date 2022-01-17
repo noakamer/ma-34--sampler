@@ -1,8 +1,6 @@
 package LabTests;
 
 import ETL.Transform.StringListToObjectList;
-import MadaReports.MadaReports;
-import health_care_provider.errors.InvalidIdException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +8,7 @@ import java.util.List;
 public class LabTestsList implements StringListToObjectList {
 
     @Override
-    public List stringListToObjectList(List list) throws InvalidIdException {
+    public List stringListToObjectList(List list) {
         List<LabTests> labTestsList = new ArrayList<>();
         for (String str : (List<String>) list) {
             if (!str.equals(list.get(0)))
