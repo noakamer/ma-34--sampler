@@ -13,7 +13,7 @@ import ETL.Transform.Split50000;
 import java.io.IOException;
 import java.util.List;
 
-public class MadaReportsManager{
+public class MadaReportsManager {
 
     public void manager(String path) throws IOException {
         Extract extract = new CsvExtract();

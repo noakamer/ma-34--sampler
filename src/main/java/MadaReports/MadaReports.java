@@ -1,7 +1,10 @@
 package MadaReports;
 
-import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class MadaReports {
     private String MDACODE;
     private long IDNum;
@@ -16,8 +19,8 @@ public class MadaReports {
     private String TakeDate;
     private String ResultDate;
 
-    public MadaReports(String record){
-        String[]data = record.split(",");
+    public MadaReports(String record) {
+        String[] data = record.split(",");
         this.MDACODE = data[0];
         this.IDNum = Long.parseLong(data[1]);
         this.IDType = Integer.parseInt(data[2]);
