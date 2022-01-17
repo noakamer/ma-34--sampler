@@ -1,4 +1,4 @@
-package MadaReports;
+package ETL.Transform;
 
 public class ChangePath {
     private int num =0;
