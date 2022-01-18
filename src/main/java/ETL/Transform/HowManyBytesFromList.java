@@ -1,7 +1,5 @@
 package ETL.Transform;
 
-import PositiveCoronaPeople.PositiveCoronaPeople;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;

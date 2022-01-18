@@ -3,10 +3,8 @@ package ETL.Load;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import org.apache.commons.text.StringEscapeUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;

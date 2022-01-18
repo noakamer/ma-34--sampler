@@ -1,8 +1,6 @@
 package LabtestSerology;
 
 import ETL.Transform.StringListToObjectList;
-import LabTests.LabTests;
-import health_care_provider.errors.InvalidIdException;
 
 import java.util.ArrayList;
 import java.util.List;

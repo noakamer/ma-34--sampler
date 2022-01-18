@@ -29,7 +29,6 @@ public class PositiveCoronaPeopleManager {
         CastCsvRecordListToStringList castToStringList = new CastCsvRecordListToStringList();
         StringListToObjectList madaReportsListClass = new MadaReportsList();
         StringListToObjectList labTestsListClass = new LabTestsList();
-        HowManyBytesFromList countBytes = new HowManyBytesFromList();
 
         String madaRecordPath = "src/main/resources/MadaReports.csv";
         String labTestsPath = "src/main/resources/LabTests.csv";

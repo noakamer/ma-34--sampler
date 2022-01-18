@@ -4,10 +4,11 @@ public class CheckAllRequirements {
     private CheckLabCode checkLabCode;
     private CheckAntidotes checkAntidotes;
 
-    public CheckAllRequirements(){
-        this.checkLabCode=new CheckLabCode();
+    public CheckAllRequirements() {
+        this.checkLabCode = new CheckLabCode();
         this.checkAntidotes = new CheckAntidotes();
     }
+
     public boolean meetsRequirements(LabtestSerology current) {
         if (!(current.getIDType() == 0 && String.valueOf(current.getIDNum()).length() == 9)) {
             return false;
