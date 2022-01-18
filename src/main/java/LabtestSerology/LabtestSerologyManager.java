@@ -1,10 +1,6 @@
 package LabtestSerology;
 
 import ETL.ETLManager;
-import ETL.Extract.CsvExtract;
-import ETL.Extract.Extract;
-import ETL.Extract.Parse.CsvParser;
-import ETL.Extract.Parse.Parse;
 import ETL.Transform.CastCsvRecordListToStringList;
 import com.google.common.io.Files;
 import health_care_provider.errors.InvalidIdException;

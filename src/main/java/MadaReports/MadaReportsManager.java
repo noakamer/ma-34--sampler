@@ -2,7 +2,6 @@ package MadaReports;
 
 import ETL.ETLManager;
 import ETL.Transform.CastCsvRecordListToStringList;
-import ETL.Transform.ChangePath;
 import ETL.Transform.SendToLoad;
 import ETL.Transform.Split.Split50000;
 import ETL.Transform.Split.SplitList;
@@ -30,7 +29,7 @@ public class MadaReportsManager extends ETLManager {
         List<MadaReports> madaReportsList = madaReportsListClass.stringListToObjectList(castToStringList.CsvRecordToString(parse.get(type).parse(extract.get(type).read(path))));
         List<List<MadaReports>> splitReports = split50000.splitList(madaReportsList);
         String basicPath = "C:\\Users\\kamer\\Desktop\\intellijProjects\\mada_reports\\";
-        send.send(splitReports,basicPath,load.get("json"));
+        send.send(splitReports, basicPath, load.get("json"));
     }
 
 }

@@ -29,6 +29,6 @@ public class LabTestsManager extends ETLManager {
         List<LabTests> labTestsList = labTestsListClass.stringListToObjectList(castToStringList.CsvRecordToString(parse.get(type).parse(extract.get(type).read(path))));
         List<List<String>> splitReports = split50000.splitList(labTestsList);
         String basicPath = "C:\\Users\\kamer\\Desktop\\intellijProjects\\LABTESTS\\";
-        send.send(splitReports,basicPath,load.get("xml"));
+        send.send(splitReports, basicPath, load.get("xml"));
     }
 }
