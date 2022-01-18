@@ -3,13 +3,14 @@ package ETL.Transform;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Split50000<T> {
-    
-    public List<List<T>> split50000(List<T> list) {
-        List<List<T>> splitedList = new ArrayList<>();
-        List<T> current = new ArrayList<>();
+public class Split50000 implements SplitList {
+
+    @Override
+    public List<List<Object>> splitList(List list) {
+        List<List<Object>> splitedList = new ArrayList<>();
+        List<Object> current = new ArrayList<>();
         int i = 0;
-        for (T val : list) {
+        for (Object val : list) {
             if (i < 50000) {
                 current.add(val);
             } else {

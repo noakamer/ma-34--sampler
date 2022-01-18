@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Split20Mb <T> {
+public class Split20Mb implements SplitList {
 
-    public List<List<T>> split20Mb(List<T> list) throws IOException {
-        List<List<T>> splitedList = new ArrayList<>();
+    @Override
+    public List<List<Object>> splitList(List list) throws IOException {
+        List<List<Object>> splitedList = new ArrayList<>();
         HowManyBytesFromList countMb = new HowManyBytesFromList();
-        List<T> current = new ArrayList<>();
-        for (T val : list) {
+        List<Object> current = new ArrayList<>();
+        for (Object val : list) {
             if (countMb.getBytesFromList(current) < 20000000) {
                 current.add(val);
             } else {
@@ -23,5 +24,4 @@ public class Split20Mb <T> {
         }
         return splitedList;
     }
-
 }
