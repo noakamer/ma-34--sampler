@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class MadaReports {
     private String MDACODE;
-    private long IDNum;
+    private int IDNum;
     private int IDType;
     private String FirstName;
     private String LastName;
@@ -22,7 +22,7 @@ public class MadaReports {
     public MadaReports(String record) {
         String[] data = record.split(",");
         this.MDACODE = data[0];
-        this.IDNum = Long.parseLong(data[1]);
+        this.IDNum = Integer.parseInt(data[1]);
         this.IDType = Integer.parseInt(data[2]);
         this.FirstName = data[3];
         this.LastName = data[4];
