@@ -21,23 +21,25 @@ import java.util.List;
 
 public class PositiveCoronaPeopleManager {
     private Load load;
-    private ChangePath change;
     private Extract extract;
     private Parse parse;
     private CastCsvRecordListToStringList castToStringList;
     private StringListToObjectList madaReportsListClass;
     private StringListToObjectList labTestsListClass;
     private CreateNewPeople createNewPeople;
+    private SendToLoad send;
+    private SplitList split20Mb;
 
     public PositiveCoronaPeopleManager() {
         this.load = new JsonLoad();
-        this.change = new ChangePath();
         this.extract = new CsvExtract();
         this.parse = new CsvParser();
         this.castToStringList = new CastCsvRecordListToStringList();
         this.madaReportsListClass = new MadaReportsList();
         this.labTestsListClass = new LabTestsList();
         this.createNewPeople = new CreateNewPeople();
+        this.send = new SendToLoad();
+        this.split20Mb = new Split20Mb();
     }
 
     public void manager() throws IOException, InvalidIdException {
@@ -56,11 +58,7 @@ public class PositiveCoronaPeopleManager {
             }
         }
         String basicPath = "C:\\Users\\kamer\\Desktop\\intellijProjects\\POSITIVE_CORONA_PEOPLE\\";
-        SplitList split20Mb = new Split20Mb();
-        List<List<PositiveCoronaPeople>> split20mb = split20Mb.splitList(coronaPeopleList);
-        for (List<PositiveCoronaPeople> list : split20mb) {
-            basicPath = change.ChangePath(basicPath);
-            load.load(basicPath, list);
-        }
+        List<List<PositiveCoronaPeople>> splitedBy20mb = split20Mb.splitList(coronaPeopleList);
+        send.send(splitedBy20mb, basicPath, load);
     }
 }

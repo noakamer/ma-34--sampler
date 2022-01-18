@@ -6,14 +6,9 @@ import java.util.List;
 public class WriteToSQL {
 
     public void insertSql(List<LabtestSerology> isOkToSend) throws SQLException, ClassNotFoundException {
-//        String connectionUrl = "jdbc:sqlserver://localhost:1433";
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         Connection connection = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=LabResults;integratedSecurity=true;");
-//        Connection connection = DriverManager.getConnection("Server=localhost;Database=LabResults;Trusted_Connection=True;");
-//        "jdbc:sqlserver://MYPC\\\\SQLEXPRESS;databaseName=MYDB;integratedSecurity=true"
         Statement statement = connection.createStatement();
-//        Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433", "dbo", "123");
-//        Statement stmt = con.createStatement();
 
         PreparedStatement preparedStmt;
         for (LabtestSerology current : isOkToSend) {
@@ -33,7 +28,6 @@ public class WriteToSQL {
             preparedStmt.setInt(9, current.getAntidotes());
             preparedStmt.setInt(10, current.getKitNumber());
 
-            // execute the preparedstatement
             preparedStmt.execute();
         }
 
