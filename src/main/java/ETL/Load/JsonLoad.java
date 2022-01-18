@@ -18,6 +18,6 @@ public class JsonLoad implements Load {
 
     @Override
     public void load(String path, List list) throws IOException {
-        mapper.writeValue(new File(path), list);
+        mapper.writeValue(new File(path+".json"), list);
     }
 }
