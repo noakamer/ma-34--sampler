@@ -27,8 +27,9 @@ public class PositiveCoronaPeopleManager {
     private CastCsvRecordListToStringList castToStringList;
     private StringListToObjectList madaReportsListClass;
     private StringListToObjectList labTestsListClass;
+    private CreateNewPeople createNewPeople;
 
-    public PositiveCoronaPeopleManager(){
+    public PositiveCoronaPeopleManager() {
         this.load = new JsonLoad();
         this.change = new ChangePath();
         this.extract = new CsvExtract();
@@ -36,6 +37,7 @@ public class PositiveCoronaPeopleManager {
         this.castToStringList = new CastCsvRecordListToStringList();
         this.madaReportsListClass = new MadaReportsList();
         this.labTestsListClass = new LabTestsList();
+        this.createNewPeople = new CreateNewPeople();
     }
 
     public void manager() throws IOException, InvalidIdException {
@@ -48,17 +50,11 @@ public class PositiveCoronaPeopleManager {
             if (labTest.getResultTestCorona() == 1) {
                 for (MadaReports madaReport : madaReportsList) {
                     if (labTest.getIDNum() == madaReport.getIDNum()) {
-                        coronaPeopleList.add(new PositiveCoronaPeople(madaReport.getIDNum(), madaReport.getIDType(),
-                                madaReport.getFirstName(), madaReport.getLastName(), madaReport.getCity(),
-                                madaReport.getStreet(), madaReport.getBuildingNumber(), madaReport.getBarcode(),
-                                labTest.getBirthDate(), labTest.getLabCode(), labTest.getResultDate(),
-                                madaReport.getTakeDate(), labTest.getStickerNumber(), labTest.getResultTestCorona(),
-                                labTest.getVariant(), labTest.getTestType()));
+                        coronaPeopleList.add(createNewPeople.create(madaReport, labTest));
                     }
                 }
             }
         }
-
         String basicPath = "C:\\Users\\kamer\\Desktop\\intellijProjects\\POSITIVE_CORONA_PEOPLE\\";
         SplitList split20Mb = new Split20Mb();
         List<List<PositiveCoronaPeople>> split20mb = split20Mb.splitList(coronaPeopleList);
