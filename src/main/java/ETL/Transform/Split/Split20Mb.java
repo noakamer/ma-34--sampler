@@ -1,4 +1,6 @@
-package ETL.Transform;
+package ETL.Transform.Split;
+
+import ETL.Transform.HowManyBytesFromList;
 
 import java.io.IOException;
 import java.util.ArrayList;

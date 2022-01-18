@@ -1,4 +1,4 @@
-package ETL.Transform;
+package ETL.Transform.Split;
 
 import java.util.ArrayList;
 import java.util.List;

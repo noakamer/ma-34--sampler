@@ -7,6 +7,8 @@ import ETL.Extract.Parse.Parse;
 import ETL.Load.JsonLoad;
 import ETL.Load.Load;
 import ETL.Transform.*;
+import ETL.Transform.Split.Split20Mb;
+import ETL.Transform.Split.SplitList;
 import LabTests.LabTests;
 import MadaReports.MadaReports;
 import MadaReports.MadaReportsList;

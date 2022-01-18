@@ -8,8 +8,8 @@ import ETL.Load.Load;
 import ETL.Load.XmlLoad;
 import ETL.Transform.CastCsvRecordListToStringList;
 import ETL.Transform.ChangePath;
-import ETL.Transform.Split50000;
-import ETL.Transform.SplitList;
+import ETL.Transform.Split.Split50000;
+import ETL.Transform.Split.SplitList;
 import health_care_provider.errors.InvalidIdException;
 
 import javax.xml.bind.JAXBException;

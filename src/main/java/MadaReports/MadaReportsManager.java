@@ -8,8 +8,8 @@ import ETL.Load.JsonLoad;
 import ETL.Load.Load;
 import ETL.Transform.CastCsvRecordListToStringList;
 import ETL.Transform.ChangePath;
-import ETL.Transform.Split50000;
-import ETL.Transform.SplitList;
+import ETL.Transform.Split.Split50000;
+import ETL.Transform.Split.SplitList;
 
 import java.io.IOException;
 import java.util.List;
