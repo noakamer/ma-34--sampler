@@ -15,60 +15,17 @@ import java.sql.*;
 
 public class LabtestSerologyManager {
 
-    public boolean checkLabCode(String labCode) {
-        if (labCode.length() > 5) {
-            return false;
-        }
-        if (!(labCode.charAt(0) >= '0' && labCode.charAt(0) <= '9')) {
-            return false;
-        }
-        if (!(labCode.charAt(1) >= '0' && labCode.charAt(1) <= '9')) {
-            return false;
-        }
-        if (!(labCode.charAt(2) >= 'A' && labCode.charAt(2) <= 'Z')) {
-            return false;
-        }
-        if (!(labCode.charAt(3) >= 'A' && labCode.charAt(3) <= 'Z')) {
-            return false;
-        }
-        if (!(labCode.charAt(4) >= '0' && labCode.charAt(4) <= '9')) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean haveEnoughAntidotes(int kitNum, int antidotes) {
-        if (kitNum != 15 && kitNum != 16 && kitNum != 17) {
-            return false;
-        }
-        if (!((kitNum == 15 && antidotes >= 500) || (kitNum == 16 && antidotes >= 1500) || (kitNum == 17 && antidotes >= 3000))) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean meetsRequirements(LabtestSerology current) {
-        if (!(current.getIDType() == 0 && String.valueOf(current.getIDNum()).length() == 9)) {
-            return false;
-        } else if (!checkLabCode(current.getLabCode())) {
-            return false;
-        } else if (!(haveEnoughAntidotes(current.getKitNumber(), current.getAntidotes()))) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     public void manager(String path) throws IOException, InvalidIdException, JAXBException {
         Extract extract = new CsvExtract();
         Parse parse = new CsvParser();
         CastCsvRecordListToStringList castToStringList = new CastCsvRecordListToStringList();
         LabtestSerologyList labTestSerologyClass = new LabtestSerologyList();
+        CheckAllRequirements checkAllRequirements = new CheckAllRequirements();
 
         List<LabtestSerology> labTestSerologyList = labTestSerologyClass.stringListToObjectList(castToStringList.CsvRecordToString(parse.parse(extract.read(path))));
         List<LabtestSerology> isOkToSend = new ArrayList<>();
         for (LabtestSerology current : labTestSerologyList) {
-            if (meetsRequirements(current)) {
+            if (checkAllRequirements.meetsRequirements(current)) {
                 isOkToSend.add(current);
             }
         }
