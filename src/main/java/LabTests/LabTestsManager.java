@@ -9,6 +9,7 @@ import ETL.Load.XmlLoad;
 import ETL.Transform.CastCsvRecordListToStringList;
 import ETL.Transform.ChangePath;
 import ETL.Transform.Split50000;
+import ETL.Transform.SplitList;
 import health_care_provider.errors.InvalidIdException;
 
 import javax.xml.bind.JAXBException;
@@ -22,12 +23,12 @@ public class LabTestsManager {
         Parse parse = new CsvParser();
         CastCsvRecordListToStringList castToStringList = new CastCsvRecordListToStringList();
         LabTestsList labTestsListClass = new LabTestsList();
-        Split50000 splitClass = new Split50000();
+        SplitList split50000 = new Split50000();
         Load load = new XmlLoad();
         ChangePath change = new ChangePath();
 
         List<LabTests> labTestsList = labTestsListClass.stringListToObjectList(castToStringList.CsvRecordToString(parse.parse(extract.read(path))));
-        List<List<String>> splitReports = splitClass.split50000(labTestsList);
+        List<List<String>> splitReports = split50000.splitList(labTestsList);
 
         String basicPath = "C:\\Users\\kamer\\Desktop\\intellijProjects\\LABTESTS\\";
         for (List<String> list : splitReports) {

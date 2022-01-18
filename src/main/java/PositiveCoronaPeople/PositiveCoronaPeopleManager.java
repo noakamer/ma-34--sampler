@@ -50,8 +50,8 @@ public class PositiveCoronaPeopleManager {
         }
 
         String basicPath = "C:\\Users\\kamer\\Desktop\\intellijProjects\\POSITIVE_CORONA_PEOPLE\\";
-        Split20Mb split20Mb = new Split20Mb();
-        List<List<PositiveCoronaPeople>> split20mb = split20Mb.split20Mb(coronaPeopleList);
+        SplitList split20Mb = new Split20Mb();
+        List<List<PositiveCoronaPeople>> split20mb = split20Mb.splitList(coronaPeopleList);
         for (List<PositiveCoronaPeople> list : split20mb) {
             basicPath = change.ChangePath(basicPath);
             load.load(basicPath, list);
