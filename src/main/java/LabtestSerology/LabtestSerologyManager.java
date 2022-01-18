@@ -15,12 +15,13 @@ import java.sql.*;
 
 public class LabtestSerologyManager {
 
-    public void manager(String path) throws IOException, InvalidIdException, JAXBException {
+    public void manager(String path) throws IOException, InvalidIdException, JAXBException, SQLException, ClassNotFoundException {
         Extract extract = new CsvExtract();
         Parse parse = new CsvParser();
         CastCsvRecordListToStringList castToStringList = new CastCsvRecordListToStringList();
         LabtestSerologyList labTestSerologyClass = new LabtestSerologyList();
         CheckAllRequirements checkAllRequirements = new CheckAllRequirements();
+        WriteToSQL writeToSQL = new WriteToSQL();
 
         List<LabtestSerology> labTestSerologyList = labTestSerologyClass.stringListToObjectList(castToStringList.CsvRecordToString(parse.parse(extract.read(path))));
         List<LabtestSerology> isOkToSend = new ArrayList<>();
@@ -29,48 +30,8 @@ public class LabtestSerologyManager {
                 isOkToSend.add(current);
             }
         }
-        System.out.println(isOkToSend.size());
+        writeToSQL.insertSql(isOkToSend);
 
-        //send to sql
-
-
-        // Create a variable for the connection string.
-        String connectionUrl = "jdbc:sqlserver://localhost:1433";
-
-        try (Connection con = DriverManager.getConnection(connectionUrl, "dbo", "123"); Statement stmt = con.createStatement();) {
-
-            PreparedStatement preparedStmt;
-            for (LabtestSerology current : isOkToSend) {
-                String query = " insert into LabResults_SerologyKits (IDNum, IDType, FirstName, LastName, ResultDate, BirthDate," +
-                        "LabCode, StickerNumber, Antidotes, KitNumber)"
-                        + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-                preparedStmt = con.prepareStatement(query);
-                preparedStmt.setInt(1, current.getIDNum());
-                preparedStmt.setInt(2, current.getIDType());
-                preparedStmt.setString(3, current.getFirstName());
-                preparedStmt.setString(4, current.getLastName());
-                preparedStmt.setString(5, current.getResultDate());
-                preparedStmt.setString(6, current.getBirthDate());
-                preparedStmt.setString(7, current.getLabCode());
-                preparedStmt.setString(8, current.getStickerNumber());
-                preparedStmt.setInt(9, current.getAntidotes());
-                preparedStmt.setInt(10, current.getKitNumber());
-
-                // execute the preparedstatement
-                preparedStmt.execute();
-            }
-
-            ResultSet rs = stmt.executeQuery("SELECT * FROM LabResults_SerologyKits");
-            // Iterate through the data in the result set and display it.
-            while (rs.next()) {
-                System.out.println(rs.getString("FirstName") + " " + rs.getString("LastName"));
-            }
-        }
-        // Handle any errors that may have occurred.
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
 
     }
 }
