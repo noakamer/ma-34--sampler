@@ -20,16 +20,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PositiveCoronaPeopleManager {
+    private Load load;
+    private ChangePath change;
+    private Extract extract;
+    private Parse parse;
+    private CastCsvRecordListToStringList castToStringList;
+    private StringListToObjectList madaReportsListClass;
+    private StringListToObjectList labTestsListClass;
+
+    public PositiveCoronaPeopleManager(){
+        this.load = new JsonLoad();
+        this.change = new ChangePath();
+        this.extract = new CsvExtract();
+        this.parse = new CsvParser();
+        this.castToStringList = new CastCsvRecordListToStringList();
+        this.madaReportsListClass = new MadaReportsList();
+        this.labTestsListClass = new LabTestsList();
+    }
 
     public void manager() throws IOException, InvalidIdException {
-        Load load = new JsonLoad();
-        ChangePath change = new ChangePath();
-        Extract extract = new CsvExtract();
-        Parse parse = new CsvParser();
-        CastCsvRecordListToStringList castToStringList = new CastCsvRecordListToStringList();
-        StringListToObjectList madaReportsListClass = new MadaReportsList();
-        StringListToObjectList labTestsListClass = new LabTestsList();
-
         String madaRecordPath = "src/main/resources/MadaReports.csv";
         String labTestsPath = "src/main/resources/LabTests.csv";
         List<MadaReports> madaReportsList = madaReportsListClass.stringListToObjectList(castToStringList.CsvRecordToString(parse.parse(extract.read(madaRecordPath))));

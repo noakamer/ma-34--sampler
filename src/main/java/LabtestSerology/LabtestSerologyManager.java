@@ -17,16 +17,21 @@ import java.sql.*;
 
 public class LabtestSerologyManager extends ETLManager {
 
-    public LabtestSerologyManager(){
+    private CastCsvRecordListToStringList castToStringList;
+    private LabtestSerologyList labTestSerologyClass;
+    private CheckAllRequirements checkAllRequirements;
+    private WriteToSQL writeToSQL;
+
+    public LabtestSerologyManager() {
         super();
+        this.castToStringList = new CastCsvRecordListToStringList();
+        this.labTestSerologyClass = new LabtestSerologyList();
+        this.checkAllRequirements = new CheckAllRequirements();
+        this.writeToSQL = new WriteToSQL();
     }
 
     public void manager(String path) throws IOException, InvalidIdException, JAXBException, SQLException, ClassNotFoundException {
         String type = Files.getFileExtension(path);
-        CastCsvRecordListToStringList castToStringList = new CastCsvRecordListToStringList();
-        LabtestSerologyList labTestSerologyClass = new LabtestSerologyList();
-        CheckAllRequirements checkAllRequirements = new CheckAllRequirements();
-        WriteToSQL writeToSQL = new WriteToSQL();
 
         List<LabtestSerology> labTestSerologyList = labTestSerologyClass.stringListToObjectList(castToStringList.CsvRecordToString(parse.get(type).parse(extract.get(type).read(path))));
         List<LabtestSerology> isOkToSend = new ArrayList<>();
